@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+          content='width=device-width,
+                         initial-scale=1.0'>
+    <title>Welcome to my Demo of multiple microservices in K8s and Helm</title>
+</head>
+
+<body style="text-align:center">
+<h1 style="color:green">K8s and Helm Demo</h1>
+<h3>Calling the Restful Webservice from this HTML Page</h3>
+<h4>Enter the API URL below and click the button</h4>
+<input type="text" name="input_url" id="input_url"></input>
+<input type="button" name="clickme" id="clickme" onclick=callStudentsApi(); value="Clickme"></input>
+<script>
+function callStudentsApi() {
+        var requestURL = "http://localhost:8080/students-api/students/getName/1";
+        requestURL = document.getElementById("input_url").value;
+        var xhr = new XMLHttpRequest( );
+        xhr.onload = (res)=>{
+           if(res.target.status == 200){
+             document.getElementById("Urlresponsediv").innerHTML +=
+             (res.target.responseText);
+           }
+        }
+        xhr.open("GET",requestURL,true);
+        xhr.send();
+}
+    </script>
+<h3>Here is the response from the Microservice Student API</h3>
+<div id="Urlresponsediv"></div>
+</body>
+
+</html>

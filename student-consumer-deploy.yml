@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: student-consumer
+  name: student-consumer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: student-consumer-selector
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: student-consumer
+    spec:
+      containers:
+      - image: docker.io/sriram1113/student-consumer
+        name: student-consumer
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 8085 
+status: {}

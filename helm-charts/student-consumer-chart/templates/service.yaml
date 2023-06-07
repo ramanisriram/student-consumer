@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: student-consumer-service
+  labels:
+    run: student-consumer
+spec:
+  ports:
+  - port: {{ .Values.service.port }}
+    protocol: {{ .Values.service.protocol | default "TCP" }}
+  selector:
+    app: student-consumer-selector
+  type: {{ .Values.service.type }}
